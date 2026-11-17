@@ -13,22 +13,28 @@ import type { DaySummary, DB, Service, Ticket } from "./types";
  *
  * Where it is kept depends on the environment:
  *  - Local development: data/db.json and data/slips/ in the project folder.
- *  - Vercel with a free Upstash Redis store connected: Redis keys.
- *    (Vercel's disk is read-only, so a JSON file cannot be kept there between requests.)
- *  - Vercel without Redis: /tmp. This works, but the data can reset at any time.
+ *  - Online (Render, Vercel, …) with a free Upstash Redis database: Redis keys.
+ *    Hosting disks are wiped on every redeploy/restart, so files can't be kept there.
+ *  - Online without Redis: a local file that works but can reset at any time
+ *    (the dashboard shows a warning).
  */
 
 const KEY = "venture-mind:db";
 const SLIP_PREFIX = "venture-mind:slip:";
 
-const redisUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const redisToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+// Upstash's own names (Render, any host) or the names Vercel's integration creates.
+const redisUrl = (process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || "").trim();
+const redisToken = (process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || "").trim();
 
+// Running on a hosting platform rather than on your own computer.
+const hosted = Boolean(process.env.RENDER || process.env.VERCEL || process.env.NETLIFY);
+
+// Vercel only allows writing to /tmp.
 const dataDir = process.env.VERCEL ? "/tmp/venture-mind" : path.join(process.cwd(), "data");
 const filePath = path.join(dataDir, "db.json");
 const slipDir = path.join(dataDir, "slips");
 
-export const storageMode = redisUrl && redisToken ? "redis" : process.env.VERCEL ? "tmp-file" : "file";
+export const storageMode = redisUrl && redisToken ? "redis" : hosted ? "tmp-file" : "file";
 
 const dayFormat = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Colombo" });
 

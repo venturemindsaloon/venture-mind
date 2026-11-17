@@ -175,8 +175,8 @@ export default function AdminPage() {
 
         {ctx.data.storageMode === "tmp-file" && (
           <p className="mt-4 rounded-xl bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
-            Data is stored in temporary storage on this server and may reset. Connect a free Upstash Redis store in
-            Vercel to keep it (see README).
+            Data is stored in temporary storage on this server and will reset when the site restarts. Add the free
+            Upstash Redis settings (UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN) to keep it. See README.
           </p>
         )}
 

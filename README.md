@@ -48,8 +48,8 @@ The **Queue open / closed** button at the top stops new online bookings (walk-in
 - **JSON storage**: the whole database is one JSON document (`src/lib/db.ts`). Payment slips are
   stored separately, one entry each, so the main document stays small.
   - Locally it is saved in `data/db.json` and `data/slips/` (created automatically).
-  - On Vercel it is saved in a free **Upstash Redis** store, because Vercel's disk is read-only and
-    files written there are lost. Slips are kept there for 30 days.
+  - Online it is saved in a free **Upstash Redis** database, because hosting disks are wiped on every
+    redeploy or restart. Slips are kept there for 30 days.
 - Starting service menu: `src/data/services.json` (after the first run, edit services in the dashboard)
 - Business contact details (phone, email, address, hours): `src/lib/site.ts`
 - Starting salon settings (stylists, chairs, bank details): `defaultSettings` in `src/lib/site.ts`
@@ -57,7 +57,7 @@ The **Queue open / closed** button at the top stops new online bookings (walk-in
 
 ## Run it on your computer
 
-Needs Node.js 20 or newer.
+Needs Node.js 20.9 or newer.
 
 ```bash
 npm install
@@ -66,31 +66,61 @@ npm run dev
 
 Open http://localhost:3000
 
-## Put it online for free (Vercel)
+## Put it online for free (Render + Upstash)
 
-1. Create a free GitHub account and a new **empty** repository (for example `venture-mind`).
-2. Push this folder to it:
-   ```bash
-   git add .
-   git commit -m "Venture Mind salon queue app"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/venture-mind.git
-   git push -u origin main
-   ```
-3. Go to https://vercel.com, sign up with GitHub, click **Add New → Project**, pick the repository,
-   and click **Deploy**. You get a link like `https://venture-mind.vercel.app`.
-4. **Keep the data (recommended):** in the Vercel project open **Storage → Create / Connect Database →
-   Upstash (Redis)**, choose the free plan, and connect it to the project. Vercel adds the
-   `KV_REST_API_URL` and `KV_REST_API_TOKEN` variables automatically. Then go to **Deployments** and
-   **Redeploy**.
-   Without this step the site still works, but the queue can reset at any time (the dashboard shows a warning).
-5. Optional: in **Settings → Environment Variables** add `ADMIN_PASSCODE` with your own passcode, then redeploy.
+The code is on GitHub. Render hosts the website and Upstash keeps the data. Both are free and need
+no credit card.
 
-Every later `git push` redeploys the site automatically.
+### 1. Create the database (Upstash)
+
+1. Go to https://upstash.com and sign up (Google or GitHub login works).
+2. Click **Create Database** → type **Redis**. Name: `venture-mind`. Choose the region closest to
+   your Render region (for example Singapore). Plan: **Free**. Create it.
+3. Open the database and find the **REST API** section. Keep this page open; you need the
+   `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` values in the next step.
+   The token is a secret: don't share it or put it in the code.
+
+### 2. Create the website (Render)
+
+1. Go to https://render.com and sign up with **GitHub** (the account that owns the repository).
+2. Click **New → Web Service**, connect GitHub if asked, and pick the `venture-mind` repository.
+3. Fill in:
+   - **Language / Runtime:** Node
+   - **Branch:** `main`
+   - **Region:** Singapore (closest to Sri Lanka)
+   - **Build Command:** `npm install && npm run build`
+   - **Start Command:** `npm start`
+   - **Instance Type:** **Free**
+4. Under **Environment Variables** add three:
+
+   | Key | Value |
+   |---|---|
+   | `UPSTASH_REDIS_REST_URL` | copied from Upstash |
+   | `UPSTASH_REDIS_REST_TOKEN` | copied from Upstash |
+   | `ADMIN_PASSCODE` | your own dashboard passcode |
+
+5. Click **Create Web Service**. The first build takes a few minutes. You get a link like
+   `https://venture-mind-xxxx.onrender.com`.
+
+### 3. Check it
+
+- Open `/admin` and log in with your passcode. There should be **no** yellow "temporary storage"
+  warning. If there is, check the two Upstash values in Render → **Environment**, then
+  **Manual Deploy → Deploy latest commit**.
+
+### Good to know
+
+- **Free sites sleep** after 15 minutes without visitors. The next visit takes about a minute to wake
+  it up, so open the site a minute before presenting.
+- Every `git push` to `main` redeploys the site automatically.
+- To change the passcode: Render → **Environment** → edit `ADMIN_PASSCODE` → save (it redeploys).
+- Vercel also works (the code supports it), but its sign-up may ask for SMS verification, which is
+  not available for Sri Lankan numbers.
 
 ## Before presenting
 
 - Edit `src/lib/site.ts` with your group's real contact details (the current ones are placeholders).
 - In Dashboard → Settings, put in the bank details you want to show (the defaults are placeholders).
-- Log in to `/admin` and press **Reset queue** to start the demo at VM-001.
-- Queue numbers restart automatically each day (Sri Lanka time).
+- Log in to `/admin` and press **Reset today's queue** to start the demo at VM-001.
+- At midnight (Sri Lanka time) the day closes automatically: totals go to Reports → Daily history,
+  finished tickets are cleared, and unfinished customers carry over to the next day with new numbers.
