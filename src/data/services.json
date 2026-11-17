@@ -1,0 +1,74 @@
+[
+  {
+    "id": "haircut",
+    "name": "Haircut & Styling",
+    "category": "Hair",
+    "duration": 30,
+    "price": 1500,
+    "description": "Wash, precision cut and blow-dry styling tailored to your face shape."
+  },
+  {
+    "id": "kids-cut",
+    "name": "Kids Haircut",
+    "category": "Hair",
+    "duration": 20,
+    "price": 900,
+    "description": "A quick, gentle cut for children under 12."
+  },
+  {
+    "id": "colour",
+    "name": "Hair Colouring",
+    "category": "Hair",
+    "duration": 90,
+    "price": 6500,
+    "description": "Full colour, highlights or balayage with premium ammonia-free products."
+  },
+  {
+    "id": "keratin",
+    "name": "Keratin Treatment",
+    "category": "Hair",
+    "duration": 120,
+    "price": 12000,
+    "description": "Smooth, frizz-free hair that lasts for months."
+  },
+  {
+    "id": "beard",
+    "name": "Beard Trim & Shave",
+    "category": "Grooming",
+    "duration": 20,
+    "price": 800,
+    "description": "Shape-up, hot towel and a clean razor finish."
+  },
+  {
+    "id": "facial",
+    "name": "Glow Facial",
+    "category": "Skin",
+    "duration": 60,
+    "price": 4500,
+    "description": "Deep cleanse, exfoliation and hydrating mask for an instant glow."
+  },
+  {
+    "id": "manicure",
+    "name": "Manicure",
+    "category": "Nails",
+    "duration": 40,
+    "price": 2000,
+    "description": "Nail shaping, cuticle care, hand massage and polish."
+  },
+  {
+    "id": "pedicure",
+    "name": "Pedicure",
+    "category": "Nails",
+    "duration": 50,
+    "price": 2500,
+    "description": "Soak, scrub, nail care and a relaxing foot massage."
+  },
+  {
+    "id": "bridal-trial",
+    "name": "Bridal Makeup Trial",
+    "category": "Makeup",
+    "duration": 90,
+    "price": 8000,
+    "description": "Try your wedding look with our senior makeup artist."
+  }
+]
