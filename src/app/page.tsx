@@ -8,18 +8,18 @@ import { site } from "@/lib/site";
 
 const steps = [
   {
-    title: "Book",
-    text: "Pick your service and join the salon queue from your phone. No calls, no app to install.",
+    title: "Book Your Queue",
+    text: "Pick your service and get your queue number from your phone. No calls, no app to install.",
     icon: "M8 7V3m8 4V3M4 11h16M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1z",
   },
   {
-    title: "Track",
-    text: "See your place in line and your estimated waiting time update live.",
-    icon: "M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z",
+    title: "Get Notified",
+    text: "Watch your place in line and waiting time update live. We tell you when it's time to come in.",
+    icon: "M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3A6 6 0 006 11v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9",
   },
   {
-    title: "Glow",
-    text: "Arrive just before your turn, relax in the chair, and leave looking your best.",
+    title: "Enjoy Your Service",
+    text: "Walk in right on time, relax in the chair, and leave looking your best.",
     icon: "M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8-5-3.6-5 3.6 1.9-5.8L4 8.8h6.1z",
   },
 ];
@@ -86,29 +86,36 @@ export default function Home() {
         <HeroBackground />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 md:grid-cols-2 md:py-24">
           <div>
-            <p className="text-sm tracking-[0.3em] text-blush uppercase">{site.subtitle}</p>
-            <h1 className="mt-4 font-display text-5xl leading-[1.05] font-semibold md:text-7xl">
-              <span className="text-gold-gradient">Book. Track. Glow.</span>
+            <p className="font-script text-3xl text-blush md:text-4xl">{site.subtitle}</p>
+            <h1 className="mt-3 font-display text-5xl leading-[1.05] font-extrabold tracking-tight md:text-7xl">
+              Skip the <span className="text-gold-gradient">queue!</span>
             </h1>
+            <p className="mt-5 inline-block rounded-full bg-gold-gradient px-5 py-2 text-sm font-semibold text-ink md:text-base">
+              {site.tagline}
+            </p>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
-              Skip the crowded waiting room. Join your salon&apos;s queue online, watch your turn come up live,
-              and walk in right on time.
+              No more crowded waiting rooms. Book your place in the salon queue online, watch your turn come up
+              live, and walk in right on time.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/join" className="btn-gold">Join the queue</Link>
+              <Link href="/join" className="btn-gold">Book your queue</Link>
               <Link href="/track" className="btn-outline">Track my ticket</Link>
             </div>
+            <p className="font-script mt-8 text-3xl text-gold-light">{site.motto}</p>
           </div>
           <div className="space-y-6">
-            <div className="mx-auto w-56 md:w-72">
-              <Image
-                src="/logo.jpg"
-                alt="Venture Mind logo"
-                width={576}
-                height={576}
-                className="rounded-full shadow-2xl shadow-gold/10"
-                priority
-              />
+            <div className="relative mx-auto w-64 md:w-80">
+              <div className="absolute -inset-4 rounded-full bg-violet/40 blur-2xl" />
+              <div className="relative overflow-hidden rounded-full ring-4 ring-gold/70 shadow-2xl shadow-violet/40">
+                <Image
+                  src="/logo.jpg"
+                  alt="QSmart logo"
+                  width={640}
+                  height={640}
+                  className="scale-[1.04]"
+                  priority
+                />
+              </div>
             </div>
             <LiveStatus />
           </div>
@@ -129,7 +136,7 @@ export default function Home() {
                 </span>
                 <span className="text-sm text-muted">Step {i + 1}</span>
               </div>
-              <h3 className="mt-5 font-display text-3xl text-gold-light">{s.title}</h3>
+              <h3 className="mt-5 font-display text-2xl font-bold text-gold-light">{s.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{s.text}</p>
             </div>
           ))}
@@ -149,7 +156,7 @@ export default function Home() {
 
       {/* Features for salon owners */}
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <SectionTitle eyebrow="For salon owners" title="Why salons choose Venture Mind" />
+        <SectionTitle eyebrow="For salon owners" title="Why salons choose QSmart" />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
             <div key={f.title} className="rounded-2xl bg-panel p-6">
@@ -196,12 +203,18 @@ export default function Home() {
 
       {/* CTA */}
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <div className="rounded-3xl bg-gold-gradient p-10 text-center text-ink md:p-14">
-          <h2 className="font-display text-4xl font-semibold md:text-5xl">Your chair is waiting.</h2>
-          <p className="mx-auto mt-3 max-w-lg text-ink/75">Join the queue now and we&apos;ll show you exactly when to arrive.</p>
-          <Link href="/join" className="mt-7 inline-flex rounded-full bg-ink px-7 py-3 font-medium text-gold-light">
-            Join the queue
+        <div className="relative overflow-hidden rounded-3xl bg-violet-gradient p-10 text-center ring-1 ring-gold/40 md:p-14">
+          <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gold/20 blur-3xl" />
+          <h2 className="relative font-display text-4xl font-extrabold md:text-5xl">
+            Your chair is <span className="text-gold-gradient">waiting.</span>
+          </h2>
+          <p className="relative mx-auto mt-3 max-w-lg text-cream/80">
+            Book your queue now and we&apos;ll show you exactly when to arrive.
+          </p>
+          <Link href="/join" className="btn-gold relative mt-7">
+            Book your queue
           </Link>
+          <p className="font-script relative mt-6 text-3xl text-gold-light">{site.motto}</p>
         </div>
       </section>
     </>
@@ -211,8 +224,8 @@ export default function Home() {
 function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div className="text-center">
-      <p className="text-sm tracking-[0.3em] text-blush uppercase">{eyebrow}</p>
-      <h2 className="mt-3 font-display text-4xl font-semibold text-gold-gradient md:text-5xl">{title}</h2>
+      <p className="font-script text-2xl text-blush md:text-3xl">{eyebrow}</p>
+      <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-gold-gradient md:text-5xl">{title}</h2>
     </div>
   );
 }

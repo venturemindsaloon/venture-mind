@@ -1,6 +1,6 @@
-# Venture Mind: Salon Queue Management
+# QSmart: Smart Salon Queue System
 
-**Book. Track. Glow.** A small demo web app for the MGT 4124 Electronic Business assignment.
+**Save Time • Book Online • Relax More.** A small demo web app for the MGT 4124 Electronic Business assignment (group: Venture Minds).
 
 Customers join a salon's queue online, track their place live, and arrive on time.
 Salon staff manage the queue from a dashboard.
@@ -11,7 +11,7 @@ Salon staff manage the queue from a dashboard.
 |---|---|---|
 | Home | `/` | Hero, live queue status, how it works, services, salon features, pricing plans |
 | Services | `/services` | Full service menu with prices and durations |
-| Join Queue | `/join` | Form to get a ticket (VM-001, VM-002, …) |
+| Join Queue | `/join` | Form to get a ticket (Q-001, Q-002, …) |
 | Track | `/track` | Find a ticket by number or phone, then see position and wait time live, and pay |
 | Contact | `/contact` | Phone, WhatsApp, email, address, opening hours and a message form |
 | Salon login | `/admin` | Staff dashboard (see below) |
@@ -136,6 +136,6 @@ The free plan gives 300 credits a month; a class demo uses only a small part of 
 
 - Edit `src/lib/site.ts` with your group's real contact details (the current ones are placeholders).
 - In Dashboard → Settings, put in the bank details you want to show (the defaults are placeholders).
-- Log in to `/admin` and press **Reset today's queue** to start the demo at VM-001.
+- Log in to `/admin` and press **Reset today's queue** to start the demo at Q-001.
 - At midnight (Sri Lanka time) the day closes automatically: totals go to Reports → Daily history,
   finished tickets are cleared, and unfinished customers carry over to the next day with new numbers.

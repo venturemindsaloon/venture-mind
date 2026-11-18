@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { liveDb } from "@/lib/live";
 
-export const metadata: Metadata = { title: "Services | Venture Mind" };
+export const metadata: Metadata = { title: "Services | QSmart" };
 
 export default function ServicesPage() {
   return (

@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
-/* Brand colours taken from the Venture Mind logo: black, gold, blush pink */
+/* Brand colours taken from the QSmart logo: deep purple, bright gold, lavender.
+   ("blush" is the lavender accent colour.) */
 @theme {
-  --color-ink: #0b0a09;
-  --color-panel: #151311;
-  --color-panel-2: #1d1a17;
-  --color-line: #3a3127;
-  --color-gold: #d4ae6a;
-  --color-gold-light: #ecd3a0;
-  --color-gold-dark: #9c7a3c;
-  --color-blush: #f3d3d6;
-  --color-blush-dark: #d9a6ad;
-  --color-cream: #f5ede0;
-  --color-muted: #a99d8c;
-  --font-display: var(--font-cormorant), Georgia, serif;
+  --color-ink: #0f0819;
+  --color-panel: #1a1029;
+  --color-panel-2: #241637;
+  --color-line: #3e2a5e;
+  --color-gold: #ebbb4e;
+  --color-gold-light: #fbdf8f;
+  --color-gold-dark: #b3841f;
+  --color-blush: #d2a8ff;
+  --color-blush-dark: #a463f2;
+  --color-violet: #8b3fd9;
+  --color-cream: #fbf7ff;
+  --color-muted: #b6a7cc;
+  --font-display: var(--font-poppins), system-ui, sans-serif;
+  --font-script: var(--font-dancing), cursive;
   --font-sans: var(--font-jost), system-ui, sans-serif;
 }
 
@@ -22,20 +25,33 @@ html {
 }
 
 body {
-  background: var(--color-ink);
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(139, 63, 217, 0.18), transparent 60%),
+    radial-gradient(900px 500px at -10% 40%, rgba(139, 63, 217, 0.12), transparent 60%),
+    var(--color-ink);
+  background-attachment: fixed;
   color: var(--color-cream);
   font-family: var(--font-sans);
 }
 
 .text-gold-gradient {
-  background: linear-gradient(100deg, #9c7a3c 0%, #ecd3a0 45%, #c9a05a 70%, #9c7a3c 100%);
+  background: linear-gradient(100deg, #b3841f 0%, #fbdf8f 40%, #ebbb4e 65%, #b3841f 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .bg-gold-gradient {
-  background: linear-gradient(100deg, #b08a47 0%, #ecd3a0 50%, #b08a47 100%);
+  background: linear-gradient(100deg, #c9952a 0%, #fbdf8f 50%, #c9952a 100%);
+}
+
+.bg-violet-gradient {
+  background: linear-gradient(120deg, #2a0f4a 0%, #5b1f9e 45%, #8b3fd9 70%, #3b1468 100%);
+}
+
+/* "Your Time Matters..." style handwriting */
+.font-script {
+  font-family: var(--font-script);
 }
 
 .gold-ring {
@@ -56,7 +72,7 @@ body {
   border-color: var(--color-gold);
 }
 .input::placeholder {
-  color: #6f665a;
+  color: #7d6c96;
 }
 
 .btn-gold {
@@ -67,8 +83,8 @@ body {
   border-radius: 999px;
   padding: 0.75rem 1.5rem;
   font-weight: 500;
-  color: #1a140b;
-  background: linear-gradient(100deg, #b08a47 0%, #ecd3a0 50%, #b08a47 100%);
+  color: #2a1505;
+  background: linear-gradient(100deg, #c9952a 0%, #fbdf8f 50%, #c9952a 100%);
   background-size: 200% 100%;
   transition: background-position 0.4s, transform 0.15s, opacity 0.15s;
 }
@@ -112,7 +128,7 @@ body {
   left: 50%;
   top: -220px;
   margin-left: -280px;
-  background: rgba(212, 174, 106, 0.18);
+  background: rgba(235, 187, 78, 0.16);
   animation: orb-1 18s ease-in-out infinite alternate;
 }
 .hero-orb-2 {
@@ -120,7 +136,7 @@ body {
   height: 420px;
   right: -120px;
   top: 30%;
-  background: rgba(243, 211, 214, 0.12);
+  background: rgba(139, 63, 217, 0.32);
   animation: orb-2 22s ease-in-out infinite alternate;
 }
 .hero-orb-3 {
@@ -128,7 +144,7 @@ body {
   height: 380px;
   left: -140px;
   bottom: -80px;
-  background: rgba(156, 122, 60, 0.18);
+  background: rgba(164, 99, 242, 0.22);
   animation: orb-3 26s ease-in-out infinite alternate;
 }
 @keyframes orb-1 {
@@ -147,8 +163,8 @@ body {
 .hero-ring {
   position: absolute;
   border-radius: 9999px;
-  border: 1px solid rgba(212, 174, 106, 0.14);
-  border-top-color: rgba(236, 211, 160, 0.45);
+  border: 1px solid rgba(235, 187, 78, 0.16);
+  border-top-color: rgba(251, 223, 143, 0.55);
   animation: ring-spin 40s linear infinite;
 }
 .hero-ring::after {
@@ -156,7 +172,7 @@ body {
   position: absolute;
   inset: 28px;
   border-radius: 9999px;
-  border: 1px dashed rgba(212, 174, 106, 0.1);
+  border: 1px dashed rgba(210, 168, 255, 0.14);
 }
 .hero-ring-reverse {
   animation-duration: 55s;
@@ -170,8 +186,8 @@ body {
   position: absolute;
   bottom: -10px;
   border-radius: 9999px;
-  background: #ecd3a0;
-  box-shadow: 0 0 6px 1px rgba(236, 211, 160, 0.8);
+  background: #fbdf8f;
+  box-shadow: 0 0 6px 1px rgba(251, 223, 143, 0.85);
   animation-name: sparkle-rise, sparkle-twinkle;
   animation-timing-function: linear, ease-in-out;
   animation-iteration-count: infinite, infinite;

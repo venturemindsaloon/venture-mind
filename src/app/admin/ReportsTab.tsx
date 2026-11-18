@@ -86,7 +86,7 @@ export default function ReportsTab() {
         </div>
         <p className="mt-3 text-xs text-muted">
           At midnight the day is closed automatically and its totals are saved here. Unfinished customers (waiting
-          or in the chair) move to the next day at the front of the queue and get new numbers from VM-001; their
+          or in the chair) move to the next day at the front of the queue and get new numbers from Q-001; their
           old number is shown next to them. A customer is counted on the day their ticket is finished, and a payment
           on the day it was received, so nobody is counted twice. Download the CSV before midnight if you need each
           customer&apos;s details.</p>

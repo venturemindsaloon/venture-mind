@@ -1,6 +1,7 @@
 import "server-only";
 import { updateDb } from "./db";
 import { findService, newId } from "./queue";
+import { ticketNumber } from "./site";
 import type { Ticket } from "./types";
 
 type Input = { name?: unknown; phone?: unknown; serviceId?: unknown; stylist?: unknown; note?: unknown };
@@ -35,7 +36,7 @@ export async function createTicket(body: Input | null, opts: { walkIn?: boolean;
     const now = new Date().toISOString();
     const ticket: Ticket = {
       id: newId(),
-      number: `VM-${String(db.counter).padStart(3, "0")}`,
+      number: ticketNumber(db.counter),
       name,
       phone,
       serviceId,

@@ -27,7 +27,7 @@ export type Payment = {
 
 export type Ticket = {
   id: string;
-  number: string; // e.g. "VM-007"
+  number: string; // e.g. "Q-007"
   name: string;
   phone: string;
   serviceId: string;

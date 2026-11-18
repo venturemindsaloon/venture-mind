@@ -93,7 +93,7 @@ export default function QueueTab() {
         <Btn
           danger
           onClick={() => {
-            if (confirm("Clear today's whole queue (including payments) and restart at VM-001?"))
+            if (confirm("Clear today's whole queue (including payments) and restart at Q-001?"))
               run(() => api("/api/admin", "POST", { action: "reset" }), "Queue cleared");
           }}
         >

@@ -36,7 +36,7 @@ export default function TrackPage() {
       <div className="text-center">
         <p className="text-sm tracking-[0.3em] text-blush uppercase">Step 2 · Track</p>
         <h1 className="mt-3 font-display text-5xl font-semibold text-gold-gradient">Track Your Ticket</h1>
-        <p className="mt-3 text-muted">Enter your ticket number (e.g. VM-004) or the mobile number you used.</p>
+        <p className="mt-3 text-muted">Enter your ticket number (e.g. Q-004) or the mobile number you used.</p>
       </div>
 
       <form onSubmit={submit} className="mt-10 space-y-4 rounded-3xl gold-ring bg-panel p-6 md:p-8">
@@ -44,7 +44,7 @@ export default function TrackPage() {
           className="input text-center text-lg"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="VM-004 or 07X XXX XXXX"
+          placeholder="Q-004 or 07X XXX XXXX"
           required
         />
         {error && <p className="rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-300">{error}</p>}

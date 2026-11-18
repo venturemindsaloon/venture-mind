@@ -2,7 +2,7 @@ import "server-only";
 import { promises as fs } from "fs";
 import path from "path";
 import servicesSeed from "@/data/services.json";
-import { defaultSettings } from "./site";
+import { defaultSettings, ticketNumber } from "./site";
 import type { DaySummary, DB, Service, Ticket } from "./types";
 
 /**
@@ -112,7 +112,7 @@ function normalize(raw: Partial<DB> | null): DB {
  *  - the day's totals are saved to history (finished tickets only),
  *  - finished tickets (done, cancelled, no-show) are cleared and their slips deleted,
  *  - unfinished tickets (waiting or in the chair) carry over to the new day in the same
- *    order, keeping their status and payment. They are renumbered VM-001, VM-002, … so
+ *    order, keeping their status and payment. They are renumbered Q-001, Q-002, … so
  *    numbers never repeat; the old number is kept in `carriedFrom` and shown to everyone.
  *  - new customers continue from the next number.
  * Returns the slip ids of the cleared tickets so they can be deleted.
@@ -127,7 +127,7 @@ function rollOver(db: DB): string[] | null {
   carried.forEach((t, i) => {
     // Keep the first original number if a ticket is carried more than once.
     t.carriedFrom ??= { day: db.day, number: t.number };
-    t.number = `VM-${String(i + 1).padStart(3, "0")}`;
+    t.number = ticketNumber(i + 1);
   });
 
   db.day = today();

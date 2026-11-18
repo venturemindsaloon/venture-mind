@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { Logo, Wordmark } from "./Brand";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -23,8 +23,11 @@ export default function Header() {
     <header className="sticky top-0 z-40 border-b border-line/70 bg-ink/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <Image src="/logo.jpg" alt="Venture Mind logo" width={44} height={44} className="rounded-full" priority />
-          <span className="font-display text-2xl font-semibold tracking-wide text-gold-gradient">Venture Mind</span>
+          <Logo size={46} priority className="ring-2 ring-gold/60" />
+          <span className="leading-none">
+            <Wordmark className="block text-2xl" />
+            <span className="font-script block text-sm text-blush">Smart Salon Queue System</span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">

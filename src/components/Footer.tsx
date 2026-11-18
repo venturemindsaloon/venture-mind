@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { Logo, Wordmark } from "./Brand";
 
 export default function Footer() {
   const c = site.contact;
@@ -7,8 +8,13 @@ export default function Footer() {
     <footer className="mt-20 border-t border-line/70 bg-panel">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-3">
         <div>
-          <p className="font-display text-3xl text-gold-gradient">{site.name}</p>
-          <p className="mt-1 text-sm tracking-[0.25em] text-blush uppercase">{site.subtitle}</p>
+          <div className="flex items-center gap-3">
+            <Logo size={56} className="ring-2 ring-gold/60" />
+            <div>
+              <Wordmark className="block text-3xl" />
+              <p className="font-script text-lg text-blush">{site.motto}</p>
+            </div>
+          </div>
           <p className="mt-4 text-sm leading-relaxed text-muted">{site.description}</p>
         </div>
         <div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Dancing_Script, Jost, Poppins } from "next/font/google";
 import { Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,10 +7,18 @@ import Announcement from "@/components/Announcement";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+// Headings: bold and modern, like "Smart" in the logo
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700", "800"],
+});
+
+// Handwriting, like "Your Time Matters..." in the logo
+const dancing = Dancing_Script({
+  variable: "--font-dancing",
+  subsets: ["latin"],
+  weight: ["600", "700"],
 });
 
 const jost = Jost({
@@ -26,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jost.variable} h-full antialiased`}>
+    <html lang="en" className={`${poppins.variable} ${dancing.variable} ${jost.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Suspense fallback={null}>
           <Announcement />

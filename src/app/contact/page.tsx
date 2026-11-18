@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ContactForm from "./ContactForm";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Contact | Venture Mind" };
+export const metadata: Metadata = { title: "Contact | QSmart" };
 
 export default function ContactPage() {
   const c = site.contact;
@@ -19,7 +19,7 @@ export default function ContactPage() {
         <p className="text-sm tracking-[0.3em] text-blush uppercase">Get in touch</p>
         <h1 className="mt-3 font-display text-5xl font-semibold text-gold-gradient">Contact Us</h1>
         <p className="mx-auto mt-3 max-w-xl text-muted">
-          Questions about a booking, or want Venture Mind for your own salon? We&apos;d love to hear from you.
+          Questions about a booking, or want QSmart for your own salon? We&apos;d love to hear from you.
         </p>
       </div>
 

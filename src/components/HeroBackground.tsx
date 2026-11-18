@@ -69,13 +69,13 @@ export default function HeroBackground() {
         >
           <path
             d="M10 1C3 9 2 20 10 31C18 20 17 9 10 1Z"
-            fill={p.pink ? "#f3d3d6" : "#d4ae6a"}
+            fill={p.pink ? "#c084fc" : "#ebbb4e"}
             fillOpacity={p.pink ? 0.55 : 0.35}
-            stroke="#ecd3a0"
+            stroke="#fbdf8f"
             strokeOpacity="0.5"
             strokeWidth="0.8"
           />
-          <path d="M10 4V28" stroke="#ecd3a0" strokeOpacity="0.35" strokeWidth="0.6" />
+          <path d="M10 4V28" stroke="#fbdf8f" strokeOpacity="0.35" strokeWidth="0.6" />
         </svg>
       ))}
 

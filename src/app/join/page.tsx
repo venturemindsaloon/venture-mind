@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import JoinForm from "./JoinForm";
 import { liveDb } from "@/lib/live";
 
-export const metadata: Metadata = { title: "Join the Queue | Venture Mind" };
+export const metadata: Metadata = { title: "Join the Queue | QSmart" };
 
 export default function JoinPage() {
   return (

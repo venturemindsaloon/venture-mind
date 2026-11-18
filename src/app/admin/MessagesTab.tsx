@@ -37,7 +37,7 @@ export default function MessagesTab() {
         {list.length === 0 && <p className="py-10 text-center text-muted">No messages.</p>}
         {list.map((m) => {
           const reply =
-            `mailto:${m.email}?subject=${encodeURIComponent("Re: your message to Venture Mind")}` +
+            `mailto:${m.email}?subject=${encodeURIComponent("Re: your message to QSmart")}` +
             `&body=${encodeURIComponent(`Hi ${m.name},\n\n\n\n---\nYou wrote:\n${m.message}`)}`;
           return (
             <div
