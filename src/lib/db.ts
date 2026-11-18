@@ -26,11 +26,13 @@ const SLIP_PREFIX = "venture-mind:slip:";
 const redisUrl = (process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || "").trim();
 const redisToken = (process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || "").trim();
 
-// Running on a hosting platform rather than on your own computer.
-const hosted = Boolean(process.env.RENDER || process.env.VERCEL || process.env.NETLIFY);
+// Serverless hosts (Vercel, Netlify — which runs on AWS Lambda) only allow writing to /tmp.
+const serverless = Boolean(process.env.VERCEL || process.env.NETLIFY || process.env.AWS_LAMBDA_FUNCTION_NAME);
 
-// Vercel only allows writing to /tmp.
-const dataDir = process.env.VERCEL ? "/tmp/venture-mind" : path.join(process.cwd(), "data");
+// Running on a hosting platform rather than on your own computer.
+const hosted = serverless || Boolean(process.env.RENDER);
+
+const dataDir = serverless ? "/tmp/venture-mind" : path.join(process.cwd(), "data");
 const filePath = path.join(dataDir, "db.json");
 const slipDir = path.join(dataDir, "slips");
 

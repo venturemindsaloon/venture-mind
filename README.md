@@ -66,21 +66,36 @@ npm run dev
 
 Open http://localhost:3000
 
-## Put it online for free (Render + Upstash)
+## Put it online for free (Netlify or Render, plus Upstash)
 
-The code is on GitHub. Render hosts the website and Upstash keeps the data. Both are free and need
-no credit card.
+The code is on GitHub. Netlify **or** Render hosts the website and Upstash keeps the data. All have
+free plans.
 
 ### 1. Create the database (Upstash)
 
 1. Go to https://upstash.com and sign up (Google or GitHub login works).
-2. Click **Create Database** → type **Redis**. Name: `venture-mind`. Choose the region closest to
-   your Render region (for example Singapore). Plan: **Free**. Create it.
+2. Click **Create Database** → type **Redis**. Name: `venture-mind`. Pick a region near where the
+   website runs: **US East (Ohio)** for Netlify (its free functions run there), **Singapore** for
+   Render. Plan: **Free**. Create it.
 3. Open the database and find the **REST API** section. Keep this page open; you need the
    `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` values in the next step.
    The token is a secret: don't share it or put it in the code.
 
-### 2. Create the website (Render)
+### 2a. Create the website on Netlify (no sleeping, recommended)
+
+1. Go to https://www.netlify.com and sign up with **GitHub** (the account that owns the repository).
+2. Click **Add new project → Import an existing project → GitHub** and pick `venture-mind`.
+3. Netlify detects Next.js. Leave the build settings as they are (build command `npm run build`).
+4. Click **Add environment variables** (or later: **Project configuration → Environment variables**)
+   and add `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` and `ADMIN_PASSCODE` (the same three as in the table in 2b).
+5. Click **Deploy**. You get a link like `https://venture-mind-xxxx.netlify.app`
+   (rename it under **Project configuration → Change project name**).
+6. If you add or change environment variables after the first deploy, go to **Deploys →
+   Trigger deploy → Deploy project** so they take effect.
+
+The free plan gives 300 credits a month; a class demo uses only a small part of that.
+
+### 2b. Or create the website on Render
 
 1. Go to https://render.com and sign up with **GitHub** (the account that owns the repository).
 2. Click **New → Web Service**, connect GitHub if asked, and pick the `venture-mind` repository.
@@ -105,15 +120,15 @@ no credit card.
 ### 3. Check it
 
 - Open `/admin` and log in with your passcode. There should be **no** yellow "temporary storage"
-  warning. If there is, check the two Upstash values in Render → **Environment**, then
-  **Manual Deploy → Deploy latest commit**.
+  warning. If there is, check the two Upstash values in the host's environment variables, then
+  redeploy (Netlify: **Trigger deploy**; Render: **Manual Deploy → Deploy latest commit**).
 
 ### Good to know
 
-- **Free sites sleep** after 15 minutes without visitors. The next visit takes about a minute to wake
-  it up, so open the site a minute before presenting.
+- **Render's free sites sleep** after 15 minutes without visitors. The next visit takes about a minute
+  to wake it up, so open the site a minute before presenting. Netlify sites don't sleep.
 - Every `git push` to `main` redeploys the site automatically.
-- To change the passcode: Render → **Environment** → edit `ADMIN_PASSCODE` → save (it redeploys).
+- To change the passcode: edit `ADMIN_PASSCODE` in the host's environment variables, then redeploy.
 - Vercel also works (the code supports it), but its sign-up may ask for SMS verification, which is
   not available for Sri Lankan numbers.
 
