@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { liveDb } from "@/lib/live";
+import { formatPrice } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Services | QSmart" };
 
@@ -43,7 +44,7 @@ async function ServiceMenu() {
                 <div key={s.id} className="flex flex-col rounded-2xl border border-line bg-panel p-5">
                   <div className="flex items-baseline justify-between gap-3">
                     <h3 className="text-lg font-medium text-cream">{s.name}</h3>
-                    <span className="shrink-0 font-medium text-gold">LKR {s.price.toLocaleString()}</span>
+                    <span className="shrink-0 font-medium text-gold">{formatPrice(s.price)}</span>
                   </div>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{s.description}</p>
                   <div className="mt-4 flex items-center justify-between">

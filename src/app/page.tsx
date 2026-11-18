@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import LiveStatus from "@/components/LiveStatus";
 import HeroBackground from "@/components/HeroBackground";
+import { OpenBadge } from "@/components/Brand";
 import { Suspense } from "react";
 import { liveDb } from "@/lib/live";
-import { site } from "@/lib/site";
+import { formatPrice, site } from "@/lib/site";
 
 const steps = [
   {
@@ -68,7 +69,7 @@ async function FeaturedServices() {
         >
           <div className="flex items-baseline justify-between gap-3">
             <h3 className="font-display text-2xl text-cream group-hover:text-gold-light">{s.name}</h3>
-            <span className="shrink-0 text-gold">LKR {s.price.toLocaleString()}</span>
+            <span className="shrink-0 text-gold">{formatPrice(s.price)}</span>
           </div>
           <p className="mt-2 text-sm text-muted">{s.description}</p>
           <p className="mt-3 text-xs tracking-wider text-blush uppercase">{s.duration} min · Join queue →</p>
@@ -90,9 +91,12 @@ export default function Home() {
             <h1 className="mt-3 font-display text-5xl leading-[1.05] font-extrabold tracking-tight md:text-7xl">
               Skip the <span className="text-gold-gradient">queue!</span>
             </h1>
-            <p className="mt-5 inline-block rounded-full bg-gold-gradient px-5 py-2 text-sm font-semibold text-ink md:text-base">
-              {site.tagline}
-            </p>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <p className="inline-block rounded-full bg-gold-gradient px-5 py-2 text-sm font-semibold text-ink md:text-base">
+                {site.tagline}
+              </p>
+              <OpenBadge />
+            </div>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
               No more crowded waiting rooms. Book your place in the salon queue online, watch your turn come up
               live, and walk in right on time.

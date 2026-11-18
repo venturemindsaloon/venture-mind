@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
-import { Logo, Wordmark } from "./Brand";
+import { site, telLink } from "@/lib/site";
+import { Logo, OpenBadge, Wordmark } from "./Brand";
 
 export default function Footer() {
   const c = site.contact;
@@ -21,12 +21,15 @@ export default function Footer() {
           <p className="mb-3 font-medium text-gold-light">Contact</p>
           <ul className="space-y-2 text-sm text-muted">
             <li>
-              <a href={`tel:${c.phone.replace(/\s/g, "")}`} className="hover:text-cream">{c.phone}</a>
+              <a href={telLink(c.phone)} className="hover:text-cream">{c.phone}</a>
             </li>
             <li>
               <a href={`mailto:${c.email}`} className="hover:text-cream">{c.email}</a>
             </li>
             <li>{c.address}</li>
+            <li className="pt-1">
+              <OpenBadge />
+            </li>
           </ul>
         </div>
         <div>

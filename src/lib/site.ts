@@ -8,14 +8,12 @@ export const site = {
     "QSmart is a smart queue system for salons. Customers book their place online, watch their turn come up live, and walk in right on time.",
   contact: {
     email: "hello@qsmart.lk",
-    phone: "+94 77 123 4567",
-    whatsapp: "+94 77 123 4567",
+    phone: "076 460 5832",
+    whatsapp: "076 460 5832",
     address: "No. 25, Main Street, Kuliyapitiya, Sri Lanka",
-    hours: [
-      { days: "Monday – Friday", time: "9:00 AM – 7:00 PM" },
-      { days: "Saturday", time: "9:00 AM – 8:00 PM" },
-      { days: "Sunday", time: "10:00 AM – 4:00 PM" },
-    ],
+    // Shown as a badge across the site
+    openLabel: "Open 24 hours · 7 days a week",
+    hours: [{ days: "Monday – Sunday", time: "Open 24 hours" }],
     socials: [
       { label: "Facebook", href: "https://facebook.com" },
       { label: "Instagram", href: "https://instagram.com" },
@@ -23,6 +21,14 @@ export const site = {
     ],
   },
 };
+
+/** "076 460 5832" → "+94764605832" (Sri Lanka) for tel: links. */
+export const telLink = (local: string) => `tel:+94${local.replace(/\D/g, "").replace(/^0/, "")}`;
+/** "076 460 5832" → "https://wa.me/94764605832" */
+export const whatsappLink = (local: string) => `https://wa.me/94${local.replace(/\D/g, "").replace(/^0/, "")}`;
+
+/** Service price for customers: "Free" or "LKR 4,500". */
+export const formatPrice = (price: number) => (price === 0 ? "Free" : `LKR ${price.toLocaleString("en-US")}`);
 
 /** Ticket numbers look like "Q-007". */
 export const TICKET_PREFIX = "Q";

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { PublicTicket, Settings } from "@/lib/types";
+import { formatPrice } from "@/lib/site";
 
 /** Shrink photos before upload so slips stay small (max 1400px, JPEG). */
 async function fileToDataUrl(file: File): Promise<string> {
@@ -85,10 +86,13 @@ export default function PaymentPanel({
         <span className={`rounded-full px-3 py-1 text-sm ${badge[p.status].cls}`}>{badge[p.status].label}</span>
       </div>
       <p className="mt-2 text-muted">
-        Amount: <span className="text-xl font-semibold text-cream">LKR {p.amount.toLocaleString()}</span>
+        Amount: <span className="text-xl font-semibold text-cream">{formatPrice(p.amount)}</span>
       </p>
 
-      {p.status === "paid" && (
+      {p.status === "paid" && p.amount === 0 && (
+        <p className="mt-4 text-sm text-emerald-300">This service is free. No payment needed.</p>
+      )}
+      {p.status === "paid" && p.amount > 0 && (
         <p className="mt-4 text-sm text-emerald-300">
           Thank you! Your payment{p.method ? ` (${p.method === "bank" ? "bank transfer" : p.method})` : ""} is confirmed.
         </p>

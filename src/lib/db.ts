@@ -20,6 +20,9 @@ import type { DaySummary, DB, Service, Ticket } from "./types";
  */
 
 const KEY = "venture-mind:db";
+
+/** Increase this when src/data/services.json changes, to replace the saved service menu. */
+const SERVICES_VERSION = 2;
 const SLIP_PREFIX = "venture-mind:slip:";
 
 // Upstash's own names (Render, any host) or the names Vercel's integration creates.
@@ -88,12 +91,16 @@ export function summarizeDay(day: string, allTickets: Ticket[]): DaySummary {
 
 /** Fill in anything missing (older data files, first run). Does not change the day. */
 function normalize(raw: Partial<DB> | null): DB {
+  // A new service menu in services.json (higher SERVICES_VERSION) replaces the saved one once;
+  // after that, edits made in the dashboard are kept.
+  const menuIsCurrent = raw?.services && raw.servicesVersion === SERVICES_VERSION;
   const db: DB = {
     day: raw?.day ?? today(),
     counter: raw?.counter ?? 0,
     tickets: raw?.tickets ?? [],
     messages: raw?.messages ?? [],
-    services: raw?.services ?? (servicesSeed as Service[]).map((s) => ({ ...s, active: true })),
+    services: menuIsCurrent ? raw!.services! : (servicesSeed as Service[]).map((s) => ({ ...s, active: true })),
+    servicesVersion: SERVICES_VERSION,
     settings: { ...defaultSettings, ...raw?.settings, bank: { ...defaultSettings.bank, ...raw?.settings?.bank } },
     history: raw?.history ?? [],
   };

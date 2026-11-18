@@ -45,9 +45,13 @@ export async function createTicket(body: Input | null, opts: { walkIn?: boolean;
       status: "waiting",
       createdAt: now,
       walkIn: opts.walkIn || undefined,
-      payment: opts.paidCash
-        ? { status: "paid", amount: service.price, method: "cash", reviewedAt: now }
-        : { status: "unpaid", amount: service.price },
+      // Free services need no payment.
+      payment:
+        service.price === 0
+          ? { status: "paid", amount: 0, reviewedAt: now }
+          : opts.paidCash
+            ? { status: "paid", amount: service.price, method: "cash", reviewedAt: now }
+            : { status: "unpaid", amount: service.price },
     };
     db.tickets.push(ticket);
     return { ticket, existing: false };

@@ -79,6 +79,7 @@ export type DB = {
   tickets: Ticket[];
   messages: ContactMessage[];
   services: Service[];
+  servicesVersion?: number; // see SERVICES_VERSION in db.ts
   settings: Settings;
   history: DaySummary[]; // one row per finished day, newest first
 };

@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import type { Service } from "@/lib/types";
+import { formatPrice } from "@/lib/site";
 
 export default function JoinForm({ services, stylists }: { services: Service[]; stylists: string[] }) {
   const router = useRouter();
@@ -61,7 +62,7 @@ export default function JoinForm({ services, stylists }: { services: Service[]; 
           </option>
           {services.map((s) => (
             <option key={s.id} value={s.id}>
-              {s.name} · {s.duration} min · LKR {s.price.toLocaleString()}
+              {s.name} · {s.duration} min · {formatPrice(s.price)}
             </option>
           ))}
         </select>

@@ -38,7 +38,10 @@ export function toPublic(db: DB, ticket: Ticket): PublicTicket {
   return {
     ...rest,
     ...estimateWait(db, ticket),
-    serviceName: findService(db, ticket.serviceId)?.name ?? ticket.serviceId,
+    // A service removed from the menu still shows a readable name, e.g. "kids-cut" → "Kids cut".
+    serviceName:
+      findService(db, ticket.serviceId)?.name ??
+      ticket.serviceId.replace(/-/g, " ").replace(/^./, (c) => c.toUpperCase()),
   };
 }
 

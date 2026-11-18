@@ -1,74 +1,74 @@
 [
   {
-    "id": "haircut",
-    "name": "Haircut & Styling",
-    "category": "Hair",
-    "duration": 30,
-    "price": 1500,
-    "description": "Wash, precision cut and blow-dry styling tailored to your face shape."
-  },
-  {
-    "id": "kids-cut",
-    "name": "Kids Haircut",
-    "category": "Hair",
+    "id": "ai-skin-hair-analytics",
+    "name": "AI Skin & Hair Analytics",
+    "category": "Smart Beauty Tech",
     "duration": 20,
-    "price": 900,
-    "description": "A quick, gentle cut for children under 12."
+    "price": 2500,
+    "description": "An AI scan of your skin and hair with a personalised report and a care plan made for you."
   },
   {
-    "id": "colour",
-    "name": "Hair Colouring",
-    "category": "Hair",
-    "duration": 90,
-    "price": 6500,
-    "description": "Full colour, highlights or balayage with premium ammonia-free products."
+    "id": "ar-virtual-try-on",
+    "name": "AR Virtual Try-On",
+    "category": "Smart Beauty Tech",
+    "duration": 15,
+    "price": 1000,
+    "description": "See new hair colours, cuts and makeup looks on yourself in augmented reality before you decide."
   },
   {
-    "id": "keratin",
-    "name": "Keratin Treatment",
-    "category": "Hair",
-    "duration": 120,
+    "id": "smart-booking",
+    "name": "Smart Booking & No Waiting",
+    "category": "Smart Beauty Tech",
+    "duration": 15,
+    "price": 0,
+    "description": "Free 15-minute consultation: we plan your visit and book your services so you never wait in line."
+  },
+  {
+    "id": "scalp-spa",
+    "name": "Scalp Spa",
+    "category": "Hair & Scalp",
+    "duration": 45,
+    "price": 4500,
+    "description": "Deep scalp cleanse, exfoliation and relaxing massage for healthier, stronger hair."
+  },
+  {
+    "id": "hydrafacial-led",
+    "name": "HydraFacial + LED Mask",
+    "category": "Skin",
+    "duration": 75,
     "price": 12000,
-    "description": "Smooth, frizz-free hair that lasts for months."
+    "description": "Cleanse, extract and hydrate with HydraFacial, finished with an LED light mask to calm and brighten."
   },
   {
-    "id": "beard",
-    "name": "Beard Trim & Shave",
-    "category": "Grooming",
-    "duration": 20,
-    "price": 800,
-    "description": "Shape-up, hot towel and a clean razor finish."
-  },
-  {
-    "id": "facial",
-    "name": "Glow Facial",
+    "id": "glass-skin-facial",
+    "name": "Glass Skin Facial",
     "category": "Skin",
     "duration": 60,
-    "price": 4500,
-    "description": "Deep cleanse, exfoliation and hydrating mask for an instant glow."
+    "price": 7500,
+    "description": "Korean-style facial with layered hydration for clear, dewy, glass-like skin."
   },
   {
-    "id": "manicure",
-    "name": "Manicure",
+    "id": "2d-nail-art",
+    "name": "2D Nail Art",
     "category": "Nails",
-    "duration": 40,
-    "price": 2000,
-    "description": "Nail shaping, cuticle care, hand massage and polish."
+    "duration": 60,
+    "price": 3500,
+    "description": "Hand-painted 2D designs, from minimal lines to full artwork, on gel or regular polish."
   },
   {
-    "id": "pedicure",
-    "name": "Pedicure",
-    "category": "Nails",
-    "duration": 50,
-    "price": 2500,
-    "description": "Soak, scrub, nail care and a relaxing foot massage."
+    "id": "bridal-package",
+    "name": "Bridal Package",
+    "category": "Bridal",
+    "duration": 240,
+    "price": 65000,
+    "description": "Complete bridal hair, makeup and dressing for your big day, including a trial session."
   },
   {
-    "id": "bridal-trial",
-    "name": "Bridal Makeup Trial",
-    "category": "Makeup",
+    "id": "home-salon",
+    "name": "Home Salon Services",
+    "category": "At Home",
     "duration": 90,
-    "price": 8000,
-    "description": "Try your wedding look with our senior makeup artist."
+    "price": 6000,
+    "description": "Our stylists come to your home for hair, makeup and grooming. Starting price; travel charged by distance."
   }
 ]

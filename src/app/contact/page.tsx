@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ContactForm from "./ContactForm";
-import { site } from "@/lib/site";
+import { site, telLink, whatsappLink } from "@/lib/site";
+import { OpenBadge } from "@/components/Brand";
 
 export const metadata: Metadata = { title: "Contact | QSmart" };
 
 export default function ContactPage() {
   const c = site.contact;
   const items = [
-    { label: "Phone", value: c.phone, href: `tel:${c.phone.replace(/\s/g, "")}` },
-    { label: "WhatsApp", value: c.whatsapp, href: `https://wa.me/${c.whatsapp.replace(/\D/g, "")}` },
+    { label: "Phone", value: c.phone, href: telLink(c.phone) },
+    { label: "WhatsApp", value: c.whatsapp, href: whatsappLink(c.whatsapp) },
     { label: "Email", value: c.email, href: `mailto:${c.email}` },
     { label: "Address", value: c.address },
   ];
@@ -44,7 +45,13 @@ export default function ContactPage() {
             </dl>
           </div>
           <div className="rounded-3xl gold-ring bg-panel p-6 md:p-8">
-            <h2 className="font-display text-2xl text-gold-light">Opening hours</h2>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="font-display text-2xl text-gold-light">Opening hours</h2>
+              <OpenBadge />
+            </div>
+            <p className="mt-3 text-sm text-muted">
+              We never close. Book your queue any time, day or night, and walk in when it&apos;s your turn.
+            </p>
             <ul className="mt-4 space-y-2 text-sm">
               {c.hours.map((h) => (
                 <li key={h.days} className="flex justify-between border-b border-line/60 pb-2">
